@@ -1075,11 +1075,6 @@ void FreeCompAtomData( COMP_ATOM_DATA *inp_at_data )
     memset( inp_at_data, 0, sizeof(*inp_at_data) );
 }
 
-
-#ifndef TARGET_API_LIB
-/*
-
-*/
 int CreateCompAtomData( COMP_ATOM_DATA *inp_at_data,
                         int num_atoms,
                         int num_components,
@@ -1100,7 +1095,6 @@ int CreateCompAtomData( COMP_ATOM_DATA *inp_at_data,
 
     return 0;
 }
-#endif
 
 #ifndef COMPILE_ANSI_ONLY
 /*

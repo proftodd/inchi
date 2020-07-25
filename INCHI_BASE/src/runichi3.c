@@ -585,12 +585,6 @@ exit_function:
     return sd->nErrorType;
 }
 
-
-
-
-#ifndef TARGET_API_LIB
-
-
 /*
     Create Composite Norm Atom
 */
@@ -780,8 +774,6 @@ int CreateCompositeNormAtom(COMP_ATOM_DATA *composite_norm_data,
 exit_error:
     return ret;
 }
-#endif
-
 
 /*
     Make a copy of ORIG_ATOM_DATA structure
