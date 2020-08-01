@@ -1,8 +1,8 @@
-file(GLOB inchi_sources src/*.c)
 add_compile_definitions(TARGET_API_LIB=1, COMPILE_ANSI_ONLY=1)
-add_library(inchi STATIC ${inchi_sources})
-target_include_directories(inchi PUBLIC include)
-install(TARGETS inchi DESTINATION lib)
+file(GLOB inchi_base_sources src/*.c)
+add_library(inchi_base STATIC ${inchi_base_sources})
+target_include_directories(inchi_base PUBLIC include)
+install(TARGETS inchi_base DESTINATION lib)
 install(
     DIRECTORY include
     DESTINATION include

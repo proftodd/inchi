@@ -40,11 +40,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "../../../../INCHI_BASE/src/mode.h"
-#include "../../../../INCHI_BASE/src/ichierr.h"
-#include "../../../../INCHI_BASE/src/inchi_api.h"
-#include "ixa_mol.h"
-#include "ixa_status.h"
+#include "mode.h"
+#include "ichierr.h"
+#include "inchi_api.h"
+#include "ixa/ixa_mol.h"
+#include "ixa/ixa_status.h"
 
 static const char* Elements[] =
    {"",
@@ -1453,7 +1453,7 @@ IXA_STEREO_PARITY INCHI_DECL IXA_MOL_GetStereoParity(IXA_STATUS_HANDLE hStatus,
     just to be a carrier which transports extension data to GetINCHI()
 */
 
-#include "../../../../INCHI_BASE/src/mol_fmt.h"
+#include "mol_fmt.h"
 
 int  IXA_MOL_SetExtMoldataByMolfileExtInput( IXA_STATUS_HANDLE hStatus,
                                              IXA_MOL_HANDLE    hMolecule,

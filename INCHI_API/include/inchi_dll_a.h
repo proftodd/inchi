@@ -40,7 +40,7 @@
 #ifndef __INCHI_DLL_A_H__
 #define __INCHI_DLL_A_H__
 
-#include "../../../INCHI_BASE/src/ichicant.h"
+#include "ichicant.h"
 
 typedef struct tagCOMPONENT_TREAT_INFO
 {

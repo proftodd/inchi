@@ -37,11 +37,11 @@
  */
 
 
-#include "../../../../INCHI_BASE/src/mode.h"
-#include "../../../../INCHI_BASE/src/inchi_api.h"
-#include "../../../../INCHI_BASE/src/inpdef.h"
-#include "ixa_status.h"
-#include "ixa_mol.h"
+#include "mode.h"
+#include "inchi_api.h"
+#include "inpdef.h"
+#include "ixa/ixa_status.h"
+#include "ixa/ixa_mol.h"
 #include <ctype.h>
 #include <stdlib.h>
 #include <string.h>

@@ -6,3 +6,4 @@ add_compile_options("-Wall")
 include_directories(/usr/local/include)
 
 add_subdirectory(INCHI_BASE)
+add_subdirectory(INCHI_API)
