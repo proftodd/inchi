@@ -63,7 +63,6 @@ extern "C" {
 
 #define inchi_fprintf e_inchi_fprintf
 
-#define inchi_fgetsLf e_inchi_fgetsLf
 #define inchi_fgetsLfTab e_inchi_fgetsLfTab
 #define inchi_ios_print_nodisplay e_inchi_ios_print_nodisplay
 #define inchi_ios_eprint e_inchi_ios_eprint
@@ -110,7 +109,7 @@ int inchi_ios_eprint( INCHI_IOSTREAM *ios, const char* lpszFormat, ... );
 /* Print to file, echoing to stderr */
 int inchi_fprintf( FILE* f, const char* lpszFormat, ... );
 
-char* inchi_fgetsLf( char* line, int line_len, FILE* inp );
+char* e_inchi_fgetsLf( char* line, int line_len, FILE* inp );
 int inchi_fgetsLfTab( char *szLine, int len, FILE *f );
 
 

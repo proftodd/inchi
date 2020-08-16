@@ -800,7 +800,7 @@ char *inchi_fgetsTab( char *szLine, int len, FILE *f )
 /******************************************************************/
 /* read not more than line_len bytes from an lf-terminated line   */
 /* if input line is too long quietly ignore the rest of the line  */
-char* inchi_fgetsLf( char* line, int line_len, FILE* inp )
+char* e_inchi_fgetsLf( char* line, int line_len, FILE* inp )
 {
     char *p, *q;
     memset( line, 0, line_len );

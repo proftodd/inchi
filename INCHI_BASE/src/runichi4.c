@@ -1168,9 +1168,6 @@ int DisplayStructure( struct tagCANON_GLOBALS *pCG,
 
 #endif /*  }COMPILE_ANSI_ONLY */
 
-
-#ifndef TARGET_API_LIB
-
 void SplitTime( unsigned long ulTotalTime,
                 int *hours,
                 int *minutes,
@@ -1186,8 +1183,6 @@ void SplitTime( unsigned long ulTotalTime,
     ulTotalTime /= 60;
     *hours = (int)(ulTotalTime);
 }
-#endif
-
 
 /*
     Check if structure is chiral

@@ -70,6 +70,7 @@
 #include "ichierr.h"
 #include "ichimain.h"
 #include "ichicomp.h"
+#include "ichiparm.h"
 #include "ichi_io.h"
 #ifdef TARGET_EXE_STANDALONE
 #include "inchi_api.h"

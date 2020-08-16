@@ -40,6 +40,8 @@
 #ifndef _ICHIPARM_H_
 #define _ICHIPARM_H_
 
+#include "ichi_io.h"
+
 /* Local */
 
 int DetectInputINChIFileType(FILE **inp_file, INPUT_PARMS *ip, const char *fmode);
