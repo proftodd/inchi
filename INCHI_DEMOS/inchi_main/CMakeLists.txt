@@ -1,4 +1,4 @@
-add_compile_definitions(TARGET_API_LIB=1, COMPILE_ANSI_ONLY=1)
+add_compile_definitions(TARGET_EXE_USING_API=1, COMPILE_ANSI_ONLY=1)
 file(GLOB inchi_main_sources src/*.c)
 add_executable(inchi_main ${inchi_main_sources})
 target_include_directories(inchi_main PUBLIC include)

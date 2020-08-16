@@ -144,7 +144,6 @@ MS VC compiler pragmas
     Select and uncomment whichever are necessary from the list below. */
 
 
-#define COMPILE_ANSI_ONLY
 #if ( !defined(_MSC_VER) || defined(TARGET_API_LIB))  /* non-Microsoft GNU C, BCC, etc. compilers */
 #ifndef COMPILE_ANSI_ONLY
 #define COMPILE_ANSI_ONLY
@@ -852,39 +851,6 @@ extern "C" {
 #define READ_INCHI_KEEP_BALANCE_P        0x00000004
 #define READ_INCHI_TO_STRUCTURE          0x00000008
 #endif
-
-
-
-
-/*********/
-/*       */
-/*  I/O  */
-/*       */
-/*********/
-
-typedef struct tagOutputString
-{
-    char *pStr;
-    int  nAllocatedLength;
-    int  nUsedLength;
-    int  nPtr;
-} INCHI_IOSTREAM_STRING;
-
-typedef struct tagOutputStream
-{
-    /* output is directed either to resizable string buffer: */
-    INCHI_IOSTREAM_STRING s;
-    /* or to the plain file: */
-    FILE* f;
-    int type;
-} INCHI_IOSTREAM;
-/* INCHI_IOSTREAM.type values */
-#define INCHI_IOSTREAM_TYPE_NONE 0
-#define INCHI_IOSTREAM_TYPE_STRING 1
-#define INCHI_IOSTREAM_TYPE_FILE 2
-
-
-
 
 /***********/
 /*         */

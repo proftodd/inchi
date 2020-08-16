@@ -278,8 +278,8 @@ static clock_t InchiClock(void)
 
 #define INCHI_MSEC(X)    (long)((1000.0/(double)CLOCKS_PER_SEC)*(X))
 #define INCHI_CLOCK_T(X) (clock_t)( (double)(X) / 1000.0 * (double)CLOCKS_PER_SEC )
-const clock_t FullMaxClock = (clock_t)(-1);
-const clock_t HalfMaxClock = (clock_t)(-1) / 2;
+const clock_t e2_FullMaxClock = (clock_t)(-1);
+const clock_t e2_HalfMaxClock = (clock_t)(-1) / 2;
 clock_t MaxPositiveClock = 0;
 clock_t MinNegativeClock = 0;
 clock_t HalfMaxPositiveClock = 0;
@@ -309,28 +309,28 @@ static void FillMaxMinClock(void)
 
 
 /******** returns difference TickEnd - TickStart in milliseconds **********/
-long InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
+long e_InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
 {
-    if ( FullMaxClock > 0 ) {
+    if ( e2_FullMaxClock > 0 ) {
         clock_t delta;
         if ( !TickEnd || !TickStart )
             return 0;
         /* clock_t is unsigned */
         if ( TickEnd->clockTime > TickStart->clockTime ) {
-            if ( TickEnd->clockTime > HalfMaxClock &&
-                 TickEnd->clockTime - TickStart->clockTime > HalfMaxClock ) {
+            if ( TickEnd->clockTime > e2_HalfMaxClock &&
+                 TickEnd->clockTime - TickStart->clockTime > e2_HalfMaxClock ) {
                 /* overflow in TickStart->clockTime, actually TickStart->clockTime was later */
-                delta = (FullMaxClock - TickEnd->clockTime) + TickStart->clockTime;
+                delta = (e2_FullMaxClock - TickEnd->clockTime) + TickStart->clockTime;
                 return -INCHI_MSEC(delta);
             }
             delta = TickEnd->clockTime - TickStart->clockTime;
             return INCHI_MSEC(delta);
         } else
         if ( TickEnd->clockTime < TickStart->clockTime ) {
-            if ( TickStart->clockTime > HalfMaxClock &&
-                 TickStart->clockTime - TickEnd->clockTime > HalfMaxClock ) {
+            if ( TickStart->clockTime > e2_HalfMaxClock &&
+                 TickStart->clockTime - TickEnd->clockTime > e2_HalfMaxClock ) {
                 /* overflow in TickEnd->clockTime, actually TickEnd->clockTime was later */
-                delta = (FullMaxClock - TickStart->clockTime) + TickEnd->clockTime;
+                delta = (e2_FullMaxClock - TickStart->clockTime) + TickEnd->clockTime;
                 return INCHI_MSEC(delta);
             }
             delta = TickStart->clockTime - TickEnd->clockTime;
@@ -365,21 +365,21 @@ long InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
     }
 }
 /******************* get elapsed time from TickStart ************************/
-long InchiTimeElapsed( e_inchiTime *TickStart )
+long e_InchiTimeElapsed( e_inchiTime *TickStart )
 {
     e_inchiTime TickEnd;
     if ( !TickStart )
         return 0;
     e_inchiTimeGet( &TickEnd );
-    return InchiTimeMsecDiff( &TickEnd, TickStart );
+    return e_InchiTimeMsecDiff( &TickEnd, TickStart );
 }
 /******************* add number of milliseconds to time *********************/
-void InchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
+void e_InchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
 {
     clock_t delta;
     if ( !TickEnd )
         return;
-    if ( FullMaxClock > 0 ) {
+    if ( e2_FullMaxClock > 0 ) {
         /* clock_t is unsigned */
         delta = INCHI_CLOCK_T(nNumMsec);
         TickEnd->clockTime += delta;
@@ -392,25 +392,25 @@ void InchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
     }
 }
 /******************* check whether time has expired *********************/
-int bInchiTimeIsOver( e_inchiTime *TickStart )
+int e_InchiTimeIsOver( e_inchiTime *TickStart )
 {
-    if ( FullMaxClock > 0 ) {
+    if ( e2_FullMaxClock > 0 ) {
         clock_t clockCurrTime;
         if ( !TickStart )
             return 0;
         clockCurrTime = InchiClock();
         /* clock_t is unsigned */
         if ( TickStart->clockTime > clockCurrTime ) {
-            if ( TickStart->clockTime > HalfMaxClock &&
-                 TickStart->clockTime - clockCurrTime > HalfMaxClock ) {
+            if ( TickStart->clockTime > e2_HalfMaxClock &&
+                 TickStart->clockTime - clockCurrTime > e2_HalfMaxClock ) {
                 /* overflow in clockCurrTime, actually clockCurrTime was later */
                 return 1;
             }
             return 0;
         } else
         if ( TickStart->clockTime < clockCurrTime ) {
-            if ( clockCurrTime > HalfMaxClock &&
-                 clockCurrTime - TickStart->clockTime > HalfMaxClock ) {
+            if ( clockCurrTime > e2_HalfMaxClock &&
+                 clockCurrTime - TickStart->clockTime > e2_HalfMaxClock ) {
                 /* overflow in TickStart->clockTime, actually TickStart->clockTime was later */
                 return 0;
             }
@@ -457,7 +457,7 @@ void e_inchiTimeGet( e_inchiTime *TickEnd )
     }
 }
 /******** returns difference TickEnd - TickStart in milliseconds **********/
-long InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
+long e_InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
 {
     long delta;
     if ( !TickEnd || !TickStart ) {
@@ -475,16 +475,16 @@ long InchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
     return delta;
 }
 /******************* get elapsed time from TickStart ************************/
-long InchiTimeElapsed( e_inchiTime *TickStart )
+long e_InchiTimeElapsed( e_inchiTime *TickStart )
 {
     e_inchiTime TickEnd;
     if ( !TickStart )
         return 0;
     e_inchiTimeGet( &TickEnd );
-    return InchiTimeMsecDiff( &TickEnd, TickStart );
+    return e_InchiTimeMsecDiff( &TickEnd, TickStart );
 }
 /******************* add number of milliseconds to time *********************/
-void InchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
+void e_InchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
 {
     long delta;
     if ( !TickEnd )
@@ -517,26 +517,26 @@ int bInchiTimeIsOver( e_inchiTime *TickEnd )
 /******** returns difference TickEnd - TickStart in milliseconds **********/
 long e_inchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart )
 {
-    if ( FullMaxClock > 0 ) {
+    if ( e2_FullMaxClock > 0 ) {
         clock_t delta;
         if ( !TickEnd || !TickStart )
             return 0;
         /* clock_t is unsigned */
         if ( TickEnd->clockTime > TickStart->clockTime ) {
-            if ( TickEnd->clockTime > HalfMaxClock &&
-                 TickEnd->clockTime - TickStart->clockTime > HalfMaxClock ) {
+            if ( TickEnd->clockTime > e2_HalfMaxClock &&
+                 TickEnd->clockTime - TickStart->clockTime > e2_HalfMaxClock ) {
                 /* overflow in TickStart->clockTime, actually TickStart->clockTime was later */
-                delta = (FullMaxClock - TickEnd->clockTime) + TickStart->clockTime;
+                delta = (e2_FullMaxClock - TickEnd->clockTime) + TickStart->clockTime;
                 return -INCHI_MSEC(delta);
             }
             delta = TickEnd->clockTime - TickStart->clockTime;
             return INCHI_MSEC(delta);
         } else
         if ( TickEnd->clockTime < TickStart->clockTime ) {
-            if ( TickStart->clockTime > HalfMaxClock &&
-                 TickStart->clockTime - TickEnd->clockTime > HalfMaxClock ) {
+            if ( TickStart->clockTime > e2_HalfMaxClock &&
+                 TickStart->clockTime - TickEnd->clockTime > e2_HalfMaxClock ) {
                 /* overflow in TickEnd->clockTime, actually TickEnd->clockTime was later */
-                delta = (FullMaxClock - TickStart->clockTime) + TickEnd->clockTime;
+                delta = (e2_FullMaxClock - TickStart->clockTime) + TickEnd->clockTime;
                 return INCHI_MSEC(delta);
             }
             delta = TickStart->clockTime - TickEnd->clockTime;
@@ -585,7 +585,7 @@ void e_inchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec )
     clock_t delta;
     if ( !TickEnd )
         return;
-    if ( FullMaxClock > 0 ) {
+    if ( e2_FullMaxClock > 0 ) {
         /* clock_t is unsigned */
         delta = INCHI_CLOCK_T(nNumMsec);
         TickEnd->clockTime += delta;
@@ -604,58 +604,3 @@ void e_inchiTimeGet( e_inchiTime *TickEnd )
 {
     TickEnd->clockTime = InchiClock();
 }
-
-
-
-/*
-	For compatibility: local implementation of non-ANSI (MS-specific) functions, prefixed with "inchi_"
-*/
-#define __MYTOLOWER(c) ( ((c) >= 'A') && ((c) <= 'Z') ? ((c) - 'A' + 'a') : (c) )
-int e_inchi_memicmp( const void * p1, const void * p2, size_t length )
-{
-    const U_CHAR *s1 = (const U_CHAR*)p1;
-    const U_CHAR *s2  = (const U_CHAR*)p2;
-    while ( length-- )
-    {
-        if ( *s1 == *s2 ||
-              __MYTOLOWER( (int)*s1 ) == __MYTOLOWER( (int)*s2 ))
-        {
-            s1 ++;
-            s2  ++;
-        }
-        else
-        {
-            return
-                __MYTOLOWER( (int)*s1 ) - __MYTOLOWER( (int)*s2 );
-        }
-    }
-
-    return 0;
-}
-int e_inchi_stricmp( const char *s1, const char *s2 )
-{
-    while ( *s1 )
-    {
-        if ( *s1 == *s2 ||
-              __MYTOLOWER( (int)*s1 ) == __MYTOLOWER( (int)*s2 ))
-        {
-            s1 ++;
-            s2  ++;
-        }
-        else
-        {
-            return
-                __MYTOLOWER( (int)*s1 ) - __MYTOLOWER( (int)*s2 );
-        }
-    }
-
-    if ( *s2 )
-        return -1;
-
-    return 0;
-}
-
-#undef __MYTOLOWER
-/*
-	End of local implementation of non-ANSI (MS-specific) functions
-*/

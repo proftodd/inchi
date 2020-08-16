@@ -70,7 +70,7 @@
 
 #endif
 
-#include "inpdef.h"
+#include "strutil.h"
 
 #ifdef TARGET_API_LIB
 

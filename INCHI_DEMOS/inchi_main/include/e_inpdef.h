@@ -49,6 +49,9 @@ extern "C" {
 #endif
 #endif
 
+#include "ichidrp.h"
+#include "mode.h"
+
 int e_MolfileToInchi_Input( FILE *inp_molfile, inchi_Input *orig_at_data, int bMergeAllInputStructures,
                        int bDoNotAddH, int bAllowEmptyStructure,
                        const char *pSdfLabel, char *pSdfValue, long *lSdfId,

@@ -47,6 +47,8 @@ extern "C" {
 #endif
 #endif
 
+#include "ichidrp.h"
+#include "mode.h"
 
 
 int e_ReadStructure(STRUCT_DATA *sd, INPUT_PARMS *ip,

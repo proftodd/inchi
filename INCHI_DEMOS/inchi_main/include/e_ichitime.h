@@ -79,7 +79,7 @@ unsigned long e_ulMyTickCountDiff( unsigned long ulTickEnd, unsigned long ulTick
 void e_inchiTimeGet( e_inchiTime *TickEnd );
 long e_inchiTimeMsecDiff( e_inchiTime *TickEnd, e_inchiTime *TickStart );
 void e_inchiTimeAddMsec( e_inchiTime *TickEnd, unsigned long nNumMsec );
-int  bInchiTimeIsOver( e_inchiTime *TickEnd );
+int  e_InchiTimeIsOver( e_inchiTime *TickEnd );
 long e_inchiTimeElapsed( e_inchiTime *TickStart );
 
 

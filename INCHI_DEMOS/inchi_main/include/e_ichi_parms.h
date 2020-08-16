@@ -46,6 +46,9 @@ extern "C" {
 #endif
 #endif
 
+#include "ichidrp.h"
+#include "mode.h"
+
 int e_ReadCommandLineParms( int argc,
                             const char *argv[],
                             INPUT_PARMS *ip,

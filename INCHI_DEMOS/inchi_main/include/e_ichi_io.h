@@ -47,6 +47,7 @@ extern "C" {
 #endif
 #endif
 
+#include "mode.h"
 
 #ifndef TARGET_API_LIB
 

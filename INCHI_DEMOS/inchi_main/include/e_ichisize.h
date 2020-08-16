@@ -57,8 +57,6 @@ typedef unsigned long INCHI_MODE;
 #define NUM_COORD 3
 typedef char MOL_COORD[LEN_COORD*NUM_COORD + NUM_COORD-1]; /*copied 30 bytes from MOLfile */
 
-typedef enum tagInputType { INPUT_NONE=0, INPUT_MOLFILE=1, INPUT_SDFILE=2, INPUT_INCHI_XML=3, INPUT_INCHI_PLAIN=4, INPUT_CMLFILE=5, INPUT_INCHI=6, INPUT_MAX } INPUT_TYPE;
-
 /* other types */
 
 #define UCINT  (int)(unsigned char)
