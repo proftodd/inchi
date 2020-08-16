@@ -53,26 +53,26 @@
 #endif
 #endif
 
-#include "../../INCHI_BASE/src/mode.h"
+#include "mode.h"
 
 #if( BUILD_WITH_AMI == 1 && defined( _MSC_VER ) && MSC_AMI == 1 )
 #include <malloc.h>
 #include <io.h>
 #endif
 
-#include "../../INCHI_BASE/src/ichitime.h"
-#include "../../INCHI_BASE/src/incomdef.h"
-#include "../../INCHI_BASE/src/ichidrp.h"
-#include "../../INCHI_BASE/src/inpdef.h"
-#include "../../INCHI_BASE/src/ichi.h"
-#include "../../INCHI_BASE/src/strutil.h"
-#include "../../INCHI_BASE/src/util.h"
-#include "../../INCHI_BASE/src/ichierr.h"
-#include "../../INCHI_BASE/src/ichimain.h"
-#include "../../INCHI_BASE/src/ichicomp.h"
-#include "../../INCHI_BASE/src/ichi_io.h"
+#include "ichitime.h"
+#include "incomdef.h"
+#include "ichidrp.h"
+#include "inpdef.h"
+#include "ichi.h"
+#include "strutil.h"
+#include "util.h"
+#include "ichierr.h"
+#include "ichimain.h"
+#include "ichicomp.h"
+#include "ichi_io.h"
 #ifdef TARGET_EXE_STANDALONE
-#include "../../INCHI_BASE/src/inchi_api.h"
+#include "inchi_api.h"
 #endif
 
 /*  console-specific */

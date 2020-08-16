@@ -39,7 +39,7 @@
 
 /* Draw input atom -- Win32 specific */
 
-#include "../../../INCHI_BASE/src/mode.h"
+#include "mode.h"
 
 #ifndef COMPILE_ANSI_ONLY
 
@@ -50,12 +50,12 @@
 #include <math.h>
 
 
-#include "../../../INCHI_BASE/src/incomdef.h"
-#include "../../../INCHI_BASE/src/ichidrp.h"
-#include "../../../INCHI_BASE/src/inpdef.h"
-#include "../../../INCHI_BASE/src/util.h"
+#include "incomdef.h"
+#include "ichidrp.h"
+#include "inpdef.h"
+#include "util.h"
 #include "dispstru.h"
-#include "../../../INCHI_BASE/src/extr_ct.h"
+#include "extr_ct.h"
 
 #if ( defined(_WIN64) || defined(WIN64))                    /* 64-bit build */
 #define GETWINDLONG GetWindowLongPtr( hWnd, GWLP_USERDATA )
