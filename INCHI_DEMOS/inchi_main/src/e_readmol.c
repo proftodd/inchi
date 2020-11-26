@@ -325,7 +325,7 @@ int mol_read_hdr(MOL_HEADER_BLOCK *hdr, FILE* inp, char *pStrErr)
 
     /* memset( &hdr, 0, sizeof( MOL_HEADER_BLOCK ) ); */
     /*------------ header line #1: name ----------------*/
-    if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+    if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
         err = 1;             /* can't read the input file line */
         /* AddMOLfileError( pStrErr, "Can't read header block name line" ); */
         goto err_fin;
@@ -339,7 +339,7 @@ int mol_read_hdr(MOL_HEADER_BLOCK *hdr, FILE* inp, char *pStrErr)
     */
     len = mol_read_datum( hdr->szMoleculeName, sizeof(hdr->szMoleculeName)-1, MOL_STRING_DATA, &p );
     /*----------- header line #2 -----------------------*/
-    if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+    if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
         err = 3;             /* can't read the input file line */
         /* AddMOLfileError( pStrErr, "Can't read header block line 2" ); */
         goto err_fin;
@@ -372,7 +372,7 @@ int mol_read_hdr(MOL_HEADER_BLOCK *hdr, FILE* inp, char *pStrErr)
 
 
     /*------------ header line #3: comment ----------------*/
-    if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+    if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
         err = 7;             /* can't read the line */
         /* AddMOLfileError( pStrErr, "Can't read header block comment line" ); */
         goto err_fin;
@@ -413,7 +413,7 @@ int mol_read_counts_line( MOL_CTAB* ctab, FILE *inp, char *pStrErr )
     const int line_len = sizeof(line);
     int   err = 0, len;
 
-    if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+    if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
         MOLFILE_ERR_FIN (err, 1, err_fin, "Cannot read counts line");
         /* can't read the input file line */
     }
@@ -472,7 +472,7 @@ int read_atom_block( MOL_CTAB* ctab, FILE *inp, int err, char *pStrErr )
 
     for ( i = 0; i < ctab->nNumberOfAtoms; i++ ) {
 
-        if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+        if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
             if ( !err ) {
                 MOLFILE_ERR_SET (err, 2, "Cannot read atom block line");
             }
@@ -593,7 +593,7 @@ int read_bonds_block( MOL_CTAB* ctab, FILE *inp, int err, char *pStrErr )
      */
     for ( i = 0; i < ctab->nNumberOfBonds; i++ ) {
 
-        if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+        if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
             if ( !err ) {
                 MOLFILE_ERR_SET (err, 2, "Cannot read bond block line");
             }
@@ -654,7 +654,7 @@ int read_stext_block( MOL_CTAB* ctab, FILE *inp, int err, char *pStrErr )
 
     for ( i = 0; i < 2*ctab->nNumberOfStextEntries; i++ ) {
 
-        if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+        if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
             if ( !err ) {
                 MOLFILE_ERR_FIN (err, 2, err_fin, "Cannot read STEXT block line");
             }
@@ -702,7 +702,7 @@ int read_properties_block( MOL_CTAB* ctab, MOL_HEADER_BLOCK *pHdr, FILE *inp, in
               exactly ctab->nNumberOfPropertyLines lines including M END */
         /* ctab->csCurrentCtabVersion[0] != 0:
               read until M END line was encountered */
-        if ( NULL == ( p = inchi_fgetsLf( line, line_len, inp ) ) ){
+        if ( NULL == ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ){
             if ( !err ) {
                 MOLFILE_ERR_SET (err, 2, "Cannot read properties block line");
             }
@@ -1153,7 +1153,7 @@ int bypass_sdf_data_items( FILE* inp, long *cas_reg_no, char* comment,
 
     while ( err           == 0                    &&
             current_state !=SDF_END_OF_DATA_BLOCK &&
-            NULL != ( p = inchi_fgetsLf( line, line_len, inp ) ) ) {
+            NULL != ( p = e_inchi_fgetsLf( line, line_len, inp ) ) ) {
 
         if ( !n_lines && !memcmp(line, "M  END", 6) ) {
             continue; /*  allow subtle errors */
@@ -1253,7 +1253,7 @@ got_data_line:
 
     if ( err && err != 5 && current_state != SDF_END_OF_DATA_BLOCK && p ) {
         /*  bypass up to $$$$ */
-        while ( ( p = inchi_fgetsLf( line, line_len, inp ) ) && memcmp( line, SDF_END_OF_DATA, 4 ) )
+        while ( ( p = e_inchi_fgetsLf( line, line_len, inp ) ) && memcmp( line, SDF_END_OF_DATA, 4 ) )
             ;
         if ( p ) {
             err = 9; /*  bypassed to $$$$; non-fatal */
@@ -1304,7 +1304,7 @@ int CopyMOLfile(FILE *inp_file, long fPtrStart, long fPtrEnd, FILE *prb_file, lo
          0 == fseek( inp_file, fPtrStart, SEEK_SET ) ) {
 
         while ( fPtrEnd > (fPtr = ftell(inp_file)) && fPtr >= 0L &&
-                inchi_fgetsLf( line, sizeof(line)-1, inp_file ) ) {
+                e_inchi_fgetsLf( line, sizeof(line)-1, inp_file ) ) {
             line[sizeof(line)-1] = '\0'; /*  unnecessary extra precaution */
             if ( fPtr == fPtrStart && lNumb ) {
                 int len;
